@@ -8,7 +8,7 @@ metadata:
 
   iconClass: icon-jenkins
   openshift.io/display-name: Jenkins BuildConfig
-  openshift.io/provider-display-name: cloudowski.com
+  openshift.io/provider-display-name: gwizenterprises.com
   tags: jenkins, build
 
 objects:
@@ -150,4 +150,5 @@ parameters:
     value: jenkins-builder
   - name: GIT_REPO
     description: "URL of the repository with Jenkins configuration"
-    value: https://github.com/cloudowski/jenkins-openshift-pipeline
+    value: https://github.com/iglwallac/jenk-build.git
+    
