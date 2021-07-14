@@ -3,8 +3,8 @@ git-client
 gitlab-plugin
 durable-task
 rebuild
-configuration-as-code-support
 configuration-as-code
+configuration-as-code-groovy
 s3
 
 # newest versions of openshift plugins

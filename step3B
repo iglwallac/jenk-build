@@ -1,5 +1,4 @@
 oc process -n openshift jenkins-persistent -p MEMORY_LIMIT=1024M|oc apply -f- -n jenkins-builder
-# exit 0
 oc set env dc/jenkins \
 OVERRIDE_PV_CONFIG_WITH_IMAGE_CONFIG=true \
 OVERRIDE_PV_PLUGINS_WITH_IMAGE_PLUGINS=true 

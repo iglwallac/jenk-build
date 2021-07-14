@@ -12,5 +12,5 @@ sleep 60
  	bash -v step3B										# STEP 3
  	oc adm policy add-cluster-role-to-user admin -z jenkins 				# STEP 4
  	oc process -f jenkins-pipeline-template.yaml|oc apply -f- -n jenkins-builder  		# STEP 5
- 	oc start-build build-image-jenkins-master  						# STEP 6 _ FINAL
+ 	oc start-build build-image-jenkins-main  						# STEP 6 _ FINAL
 
