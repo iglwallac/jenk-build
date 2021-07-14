@@ -5,7 +5,6 @@ durable-task
 rebuild
 configuration-as-code
 configuration-as-code-groovy
-s3
 
 # newest versions of openshift plugins
 openshift-client
@@ -13,33 +12,26 @@ openshift-sync
 openshift-login
 openshift-pipeline
 
-
-## SPECIAL ADDITIONS
+## SPECIAL ADDITIONS -- no dupes
+antisamy-markup-formatter
+aws-java-sdk
 conditional-buildstep
 config-file-provider
 copyartifact
-copyartifact
 cucumber-reports
+dependency-check-jenkins-plugin
+dependency-track
 envinject
-greenballs
 google-oauth-plugin
-jquery
+greenballs
 javadoc
+jquery
 managed-scripts
 nodejs
 oauth-credential
-dependency-check-jenkins-plugin
-dependency-track
-antisamy-markup-formatter
 parameterized-trigger
-aws-java-sdk
-s3
 run-condition
+s3
 slack
 sonar
 warnings-ng
-
-
-
-
-
