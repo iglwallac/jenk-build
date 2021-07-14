@@ -1,0 +1,15 @@
+ansicolor
+git-client
+gitlab-plugin
+durable-task
+rebuild
+configuration-as-code
+configuration-as-code-groovy
+s3
+
+# newest versions of openshift plugins
+openshift-client
+openshift-sync
+openshift-login
+openshift-pipeline
+

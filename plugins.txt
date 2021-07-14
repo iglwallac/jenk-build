@@ -13,3 +13,33 @@ openshift-sync
 openshift-login
 openshift-pipeline
 
+
+## SPECIAL ADDITIONS
+conditional-buildstep
+config-file-provider
+copyartifact
+copyartifact
+cucumber-reports
+envinject
+greenballs
+google-oauth-plugin
+jquery
+javadoc
+managed-scripts
+nodejs
+oauth-credential
+dependency-check-jenkins-plugin
+dependency-track
+antisamy-markup-formatter
+parameterized-trigger
+aws-java-sdk
+s3
+run-condition
+slack
+sonar
+warnings-ng
+
+
+
+
+
