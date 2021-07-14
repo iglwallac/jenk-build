@@ -1,6 +1,6 @@
 set -x 
  	oc delete project jenkins-builder
-sleep 60
+ sleep 60
 	while (`oc projects |grep jenkins-builder 2>/dev/null` !=  '0'  )
 	do
 		echo ".\c"
