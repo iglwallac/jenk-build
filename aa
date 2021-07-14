@@ -1,0 +1,2 @@
+oc apply -f https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/jenkins-persistent-template.json -n openshift
+
