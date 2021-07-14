@@ -144,7 +144,7 @@ objects:
 parameters:
   - name: GIT_BRANCH
     description: "Name of branch"
-    value: master
+    value: main
   - name: PROJECT
     description: "Name of the destination project"
     value: jenkins-builder
