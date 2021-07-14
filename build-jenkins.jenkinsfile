@@ -1,0 +1,75 @@
+def dateFormat = new java.text.SimpleDateFormat("yyyyMMdd'-'HHmmss")
+snapshotVersion = dateFormat.format(new Date())
+
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Build Image') {
+      steps {
+
+        script {
+          openshift.withCluster() {
+            openshift.withProject("jenkins-builder") {
+              def build = openshift.selector("bc", "jenkins-master").startBuild()
+              def build_logs = build.logs("-f")
+              // sometimes status is 'Running' after it has actually finished
+              sleep 2
+              def build_obj = build.object()
+              echo "Build status: ${build_obj.status.phase}"
+              if (build_obj.status.phase != 'Complete' || build_obj.status.phase == 'Running') {
+                  error 'Build failed'
+              }
+              imageDigest = build_obj.status.output.to.imageDigest
+              echo "Tagging jenkins-builder/jenkins-master@${imageDigest} as jenkins-builder/jenkins-master:${snapshotVersion} (and jenkins-builder/jenkins-master:latest)"
+              openshift.tag("jenkins-builder/jenkins-master@${imageDigest}", "jenkins-builder/jenkins-master:latest")
+              openshift.tag("jenkins-builder/jenkins-master@${imageDigest}", "jenkins-builder/jenkins-master:${snapshotVersion}")
+            }
+          }
+        }
+
+      }
+    }
+
+    stage('Publish?') {
+      agent any
+      when {
+        expression { "master" == "master" }
+      }
+      input {
+        id "publishImageTag"
+        message "Publish 'jenkins-master:${snapshotVersion}' as latest? Enter destination tag"
+         parameters {
+           string(defaultValue: 'latest', description: 'Tag for the destination Image ', name: 'IMAGETAG')
+        }
+      }
+      steps {
+        script {
+          imageTag = "${IMAGETAG}"
+        }
+        echo "Provided imagetag: ${IMAGETAG}"
+      }
+    }
+
+    stage('Publish Image') {
+      when {
+        expression { "master" == "master" }
+      }
+
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.withProject("openshift") {
+              echo "Tagging jenkins-builder/jenkins-master@${imageDigest} as openshift/jenkins:${imageTag} (and openshift/jenkins:${snapshotVersion})"
+              openshift.tag("--reference-policy=local","jenkins-builder/jenkins-master@${imageDigest}", "openshift/jenkins:${imageTag}")
+              openshift.tag("--reference-policy=local","jenkins-builder/jenkins-master@${imageDigest}", "openshift/jenkins:${snapshotVersion}")
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}
