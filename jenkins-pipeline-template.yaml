@@ -150,5 +150,5 @@ parameters:
     value: jenkins-builder
   - name: GIT_REPO
     description: "URL of the repository with Jenkins configuration"
-    value: https://github.com/iglwallac/jenk-build.git
+    value: 'https://github.com/iglwallac/jenk-build.git'
     
